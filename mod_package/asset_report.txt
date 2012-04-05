@@ -1,0 +1,20 @@
+Load-on-demand and missing assets report
+
+Category: LOAD_ON_DEMAND_ROBJ
+
+
+Category: LOAD_ON_DEMAND_HANIM
+
+
+Category: LOAD_ON_DEMAND_HTREE
+
+
+Category: MISSING_ROBJ
+
+
+Category: MISSING_HANIM
+
+
+Category: MISSING_HTREE
+
+
