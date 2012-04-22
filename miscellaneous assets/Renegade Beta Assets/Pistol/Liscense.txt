@@ -1,0 +1,4 @@
+This is an old firstperson model for the pistol.
+It has been found by Nero and created by Westwood.
+
+If you do model/change it credit the original finder and creator.

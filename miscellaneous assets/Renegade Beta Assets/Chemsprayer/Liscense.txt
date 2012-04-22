@@ -1,0 +1,6 @@
+This is the old chemsprayer that I have recreated.
+The W3D's folder contains the model that you can use in your own game just copy and paste them to your data folder also copy and paste the texture files!
+
+You may alter this rifle for your personal needs but if you plan on releasing your alterd version please credit me!
+
+-Reaver11

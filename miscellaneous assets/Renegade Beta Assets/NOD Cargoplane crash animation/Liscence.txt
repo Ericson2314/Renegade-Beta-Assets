@@ -1,0 +1,1 @@
+Two fully working crash animations from Westwood. (You can find these also in always.dat)

@@ -1,0 +1,5 @@
+This is the NOD beta advanced powerplant. You can use this model on your maps. It is a functional building. It only has no lightmaps and damage states. Also there are no callboxes in the building which means you have to add doors and elevators yourself. If you want to see an example open up the map c&c_divided in the nitromod. The meshprefix is located in the gmax file.
+
+You may use this model but if you edit/use it please credit me!
+
+-Reaver11

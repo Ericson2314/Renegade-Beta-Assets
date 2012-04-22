@@ -1,0 +1,3 @@
+I have found and patched up the gunboat sink animation. It has no emitters.
+
+-Reaver11

@@ -1,0 +1,42 @@
+// Using IceCore (Release build) - Compiled May 30 2003 at 14:09:41
+Pentium Pro processor detected.
+FPU detected.
+MMX detected.
+RDTSC supported.
+CMOV supported.
+FCOMI supported.
+Little endian machine.
+Approximate processor frequency = 1670.35 MHz
+OS: 5.1.2600 - Windows NT detected.
+05/28/04
+15:42:39
+Current dir: D:\apps\3dsmax6\scenes\oldc&c\ConYard
+System dir: C:\WINDOWS\System32
+Windows dir: C:\WINDOWS
+Driver version: 16384
+Width: 1600
+Height: 1200
+BPP: 32
+Registering class: SmartContainer
+Registering class: CustomList
+Registering class: DataBlock
+Kernel size: 164
+// Using IceMaths (Release build) - Compiled May 30 2003 at 14:10:01
+// Using IceImageWork (Release build) - Compiled May 30 2003 at 14:10:14
+// Using Meshmerizer (Release build) - Compiled May 30 2003 at 14:10:34
+// Closing Ice Meshmerizer
+
+// Closing Ice ImageWork
+
+// Closing Ice Maths
+
+// Closing Ice Core
+
+52 bytes used by the notification system.
+0 entries left in kernel (max = 1), 60 bytes used by ref-tracking.
+IceCore: creating callback manager
+0 registered dynamic identifiers.
+0 flushed global messages.
+0 flushed errors.
+Trash buffer size: 0 bytes
+KID cache: 0 hits, 0 misses

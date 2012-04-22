@@ -1,0 +1,6 @@
+C&C_Under Beta Version Skin
+
+These files make C&C_Under have the rocky texture that it had in the Renegade Beta. 
+Just extract them into your Data folder.
+
+-SomeRhino

@@ -1,0 +1,6 @@
+I have fixed up this NOD Silo. The meshprefix name is nsil.
+
+It has no damage states but for the rest it is in full working condition.
+Do want you want with this model.
+
+Reaver11

@@ -1,0 +1,8 @@
+This is the old Railgun that I have been working on.
+
+Everything should be supplied with it.
+You are allowed to modify if for your own personal use.
+
+Though if you do want to release an alterd version please credit me!
+
+-Reaver11

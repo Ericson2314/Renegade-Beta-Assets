@@ -1,0 +1,4 @@
+19_ravebod.dds and l11_sethhed.dds are westwoods original texture files for seth.
+
+The c_mendoda.dds is a skin replacement for mendoza to turn him into Seth.
+I don't know who made that.

@@ -1,0 +1,8 @@
+This is a recreation of the beta hud made by Scrin.
+It contains only the resolution 1024x768. 
+There is another zip in this folder which contains the 1920-1080 variant.
+
+You are allowed to use this hud but you are not allowed to release an alterdversion.
+(If you fix the extra resolutions please contact me)
+
+Also Scripts 3.4.4 is required for this hud!!!

@@ -1,0 +1,4 @@
+This is the GDI MediumTank patched up by rrutk.
+It is in full working condition and has working wheels in the treads.
+
+You may use and edit the model as long as you credit rrutk.

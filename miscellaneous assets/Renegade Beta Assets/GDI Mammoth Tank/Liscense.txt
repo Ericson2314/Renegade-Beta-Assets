@@ -1,0 +1,4 @@
+This is the GDI Mammoth tank patched up by rrutk.
+There are now wheels inside the treads that work!
+
+You may use and edit the model as long as you credit rrutk.

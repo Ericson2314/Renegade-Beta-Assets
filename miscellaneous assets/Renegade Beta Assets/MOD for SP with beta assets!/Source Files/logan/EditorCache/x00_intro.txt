@@ -1,0 +1,471 @@
+;_________________________________________
+;
+; Available Cinematic Script Commands
+;
+; time/frame	Create_Object,	id (slot), preset_name, x, y, z, facing, animation
+; id can be -1 to mean do not store this object, and do not destroy
+; 0 Create_Object, 0, .44 Magnum, 0, 0, 0, 180, "Human.jump"
+;
+; time/frame	Destroy_Object, id (slot)
+; 0 Destroy_Object, 0
+;
+; time/frame	Play_Animation, id (slot), animation_name, looping, sub_obj_name
+; 0 Play_Animation, 0, "Human.Jump", false
+;
+; time/frame	Control_Camera,	id ( slot )
+; use id -1 for disabling control;
+; note this will also disable star control and disbale the hud
+; 0 Control_Camera,	0
+;
+;_________________________________________
+
+;*******************  CHEAT SHEET ******************************
+
+;Start frame	create_object	slot number	model	x,y,z,facing	animation name( model*hierarchy*.anim )
+;Start frame	Play_Animation 	slot number	anim name ( model*hierarchy*.anim )	looping		Sub Object
+;Start frame	Play_Audio	wave filename	slot number	bone name
+;								* no slot # / bone name = 2D Audio
+;0= NO LOOP ( kills object when finshed )	1= LOOP
+
+;************************* Mission 00 Intro ************************
+
+; ****************************** camera
+
+-0	Create_Object,		0, "X00_CAMERA",		0, 0, 0, 0, 
+-0	Play_Animation,		0, "X00_CAMERA.X00_CAMERA", 0
+-0	Control_Camera,		0
+-1162	Shake_Camera,		0,1.0,2
+-1230	Shake_Camera,		0,.7,.7
+-1230	Shake_Camera,		0,.5,.3
+-1300	Shake_Camera,		0,.2,.3
+-1315	Shake_Camera,		0,.7,.5
+-1340	Shake_Camera,		0,.3,.5
+-1355	Shake_Camera,		0,.5,.6
+-1400	Shake_Camera,		0,.5,.5
+-1440	Shake_Camera,		0,.7,.5
+-1470	Shake_Camera,		0,.6,.5
+-1484	Shake_Camera,		0,.2,.3
+-1503	Shake_Camera,		0,.3,.3
+-1523	Shake_Camera,		0,.2,.3
+-1538	Shake_Camera,		0,.2,.3
+-1555	Shake_Camera,		0,.7,.5
+-1512	Shake_Camera,		0,1.0,.25
+-2130	Control_Camera,		-1
+-2130	destroy_object,		0
+
+; ******************************************************
+
+;-0	Play_Audio,		"renegade_intro_no_vox"
+
+-0	Enable_Letterbox,	1, 1
+-0	Set_Screen_Fade_Color,		0,0,0,0
+-0	Set_Screen_Fade_Opacity,	1,0
+-0	Set_Screen_Fade_Opacity,	0,2
+-1555	Set_Screen_Fade_Color,		1,1,1,0
+-1555	Set_Screen_Fade_Opacity,	1,.2
+-1560	Set_Screen_Fade_Opacity,	0,1.5
+-2130	Set_Screen_Fade_Opacity,	0,0
+-2100	Enable_Letterbox,	0, 1
+
+
+
+; ****************************** Trajectory MTank
+
+-0	Create_Object,		1, "X00_MTank_traj",			0, 0, 0, 0
+-0	Play_Animation,		1, "X00_MTank_traj.X00_MTank_traj", 0
+-1600	destroy_object,		1
+
+; ****************************** Mtank
+
+-0	Create_Real_Object,	2, "GDI_Medium_Tank", 1, "BN_Trajectory" 
+-0	Attach_to_Bone,		2,1,"BN_Trajectory"
+-0	Play_Animation,		2, "v_gdi_medtnk.x00_Mtank_anim", 0
+-1435   Attach_Script,          2, "M00_Cinematic_Attack_Command_DLS", "0.5"
+;-0	Set_Primary,		2
+-1600	destroy_object,		2
+-0	Enable_Shadow,		2, 1
+-625	Enable_Shadow,		2, 0
+-1120	Enable_Shadow,		2, 1
+
+
+; ****************************** Trajectory Humvee
+
+-0	Create_Object,		3, "X00_Humvee_Traj",			0, 0, 0, 0
+-0	Play_Animation,		3, "X00_Humvee_Traj.X00_Humvee_Traj", 0
+-1600	destroy_object,		3
+
+
+
+; ****************************** Humvee
+
+-0	Create_Real_Object,	4, "GDI_humm-vee", 3, "BN_Trajectory" 
+-0	Attach_to_Bone,		4,3,"BN_Trajectory"
+-1545	Attach_Script,          4, "M00_Cinematic_Kill_Object_DAY"
+
+
+; ****************************** Trajectory APC
+
+-0	Create_Object,		5, "X00_apc_Traj",			0, 0, 0, 0
+-0	Play_Animation,		5, "X00_apc_Traj.X00_apc_Traj", 0
+-1600	destroy_object,		5
+
+
+
+; ****************************** APC
+
+-0	Create_Real_Object,	6, "GDI_APC_NoAudio", 5, "BN_Trajectory" 
+-0	Attach_to_Bone,		6,5,"BN_Trajectory"
+-1600	destroy_object,		6
+-0	Enable_Shadow,		6, 0
+-1120	Enable_Shadow,		6, 1
+
+
+; ****************************** GDI Troop Trajectory
+
+-0	Create_Object,		7, "X00_GDI_Troops",			0, 0, 0, 0
+-0	Play_Animation,		7, "X00_GDI_Troops.X00_GDI_Troops", 0
+-1600	destroy_object,		7
+
+
+
+; ****************************** GDI MGO
+
+-0	Create_real_Object,	8, "MX0_GDI_Minigunner_1OFF", 	7, "BN_GDI_MGO" 
+-0	Attach_to_Bone,		8,7,"BN_GDI_MGO"
+-0	Play_Animation,		8, "S_A_Human.H_A_x00_walk_01",0,,1
+-1139	Play_Animation,		8, "S_A_Human.H_A_DIV1",1,,1
+-1157	Play_Animation,		8, "S_A_Human.H_A_c2c2",1,,1
+-1317	Play_Animation,		8, "S_A_Human.H_A_c2c0",1,,1
+-1380	Play_Animation,		8, "S_A_Human.H_A_B0A1",1,,1
+-0  	Attach_Script,          8, "M00_Disable_Loiter_DAY"
+-0	Enable_Shadow,		8, 0
+-625	Enable_Shadow,		8, 1
+-1600	destroy_object,		8
+
+; ****************************** GDI MG01
+
+-0	Create_real_Object,	9, "mx0_gdi_minigunner_0_b", 		7, "BN_GDI_MG_01"
+-0	Attach_to_Bone,		9,7,"BN_GDI_MG_01"
+-0	Play_Animation,		9, "S_A_Human.H_A_X00_WALK_04",0,,1
+-0  	Attach_Script,          9, "M00_Disable_Loiter_DAY"
+-1119	Play_Animation,		9, "S_A_Human.H_A_B0A1", 1,,1
+-1219	Play_Animation,		9, "S_A_Human.H_A_C3C0", 1,,1
+-1248	Play_Animation,		9, "S_A_Human.H_A_C2a1", 1,,1
+-1462	Play_Animation,		9, "S_A_Human.H_A_C3C0", 1,,1
+-0	Enable_Shadow,		9, 0
+-625	Enable_Shadow,		9, 1
+-1600	destroy_object,		9
+
+
+; ****************************** GDI MG02
+
+-0	Create_real_Object,	10, "gdi_rocketsoldier_1off", 		7, "BN_GDI_MG_02"
+-0	Attach_to_Bone,		10,7,"BN_GDI_MG_02"
+-0	Play_Animation,		10, "S_A_Human.H_A_X00_Walk_02", 0,,1
+-0  	Attach_Script,          10, "M00_Disable_Loiter_DAY"
+-1140	Play_Animation,		10, "S_A_Human.H_A_DIV4", 1,,1
+-1157	Play_Animation,		10, "S_A_Human.H_A_b0A1", 1,,1
+-1200	Play_Animation,		10, "S_A_Human.H_A_c3c4", 1,,1
+-1200   Attach_Script,          10, "M00_Cinematic_Attack_Command_DLS", "1.0"
+-1224	Play_Animation,		10, "S_A_Human.H_A_c3c2", 1,,1
+-0	Enable_Shadow,		10, 0
+-625	Enable_Shadow,		10, 1
+-1800	destroy_object,		10
+
+
+; ****************************** GDI MG03
+
+-1180	Create_real_Object,	11, "gdi_minigunner_0", 	7, "BN_GDI_MG_03"
+-1180	Attach_to_Bone,		11,7,"BN_GDI_MG_03"
+-1180  	Attach_Script,          11, "M00_Disable_Loiter_DAY"
+-1180   Attach_Script,          11, "M00_Cinematic_Attack_Command_DLS", "6.0"
+-1286	Play_Animation,		11, "S_A_Human.H_A_C2A1", 1,,1
+-1332   Attach_Script,          11, "M00_Cinematic_Attack_Command_DLS", "5.0"
+-1600	destroy_object,		11
+
+
+; ****************************** GDI MG04
+
+-0	Create_real_Object,	12, "gdi_minigunner_0", 		7, "BN_GDI_MG_04"
+-0	Attach_to_Bone,		12,7,"BN_GDI_MG_04"
+-0	Play_Animation,		12, "S_A_Human.H_A_X00_walk_04", 1
+-1184	Play_Animation,		12, "S_A_Human.H_A_C2A1", 1,,1
+-0  	Attach_Script,          12, "M00_Disable_Loiter_DAY"
+-0	Enable_Shadow,		12, 1
+-625	Enable_Shadow,		12, 0
+-1120	Enable_Shadow,		12, 1
+-1600	destroy_object,		12
+
+; ****************************** GDI MG05
+
+-1290	Create_real_Object,	13, "gdi_rocketsoldier_0", 	7, "BN_GDI_MG_05"
+-1290	Attach_to_Bone,		13,7,"BN_GDI_MG_05"
+-0  	Attach_Script,          13, "M00_Disable_Loiter_DAY"
+-1290	Play_Animation,		13, "S_A_Human.H_A_c3b2",1,,1
+-1340	Attach_Script,          13, "M00_Cinematic_Kill_Object_DAY"
+;-1374	destroy_object,		13
+
+
+; ****************************** GDI MG06
+
+-0	Create_real_Object,	14, "gdi_minigunner_0", 	7, "BN_GDI_MG_06"
+-0	Attach_to_Bone,		14,7,"BN_GDI_MG_06"
+-0	Play_Animation,		14, "S_A_Human.H_A_X00_walk_02", 0
+-0  	Attach_Script,          14, "M00_Disable_Loiter_DAY"
+-1180	Play_Animation,		14, "S_A_Human.H_A_C2C4",1,,1
+-1262   Attach_Script,         	14, "M00_Cinematic_Attack_Command_DLS", "3.0"
+-1390	Play_Animation,		14, "S_A_Human.H_A_C2C4",1,,1
+-1471	Play_Animation,		14, "S_A_Human.H_A_C2C2",1,,1
+-0	Enable_Shadow,		14, 1
+-625	Enable_Shadow,		14, 0
+-1120	Enable_Shadow,		14, 1
+-1600	destroy_object,		14
+
+
+; ****************************** Havoc trajectory
+
+-1773	Create_Object,		15, "X00_Havoc_Traj",			0, 0, 0, 0
+-1773	Play_Animation,		15, "X00_Havoc_Traj.X00_Havoc_Traj", 0
+-1999	destroy_object,		15
+
+
+
+; ****************************** Havoc
+
+-0	Send_Custom,		1200001, 117, 0
+-1773	Create_real_Object,	16, "commando_desert", 		15, "BN_Havoc"
+-1773	Attach_to_Bone,		16,15,"BN_Havoc"
+-1773  	Attach_Script,          16, "M00_Disable_Loiter_DAY"
+-1773	Play_Animation,		16, "S_A_Human.H_A_X00_Havoc", 0
+-1998	Send_Custom,		1200001, 99, 0
+-1999	destroy_object,		16
+
+
+; ****************************** Transport trajectory
+
+-1594	Create_Object,		17, "X00_Trnspt_traj",			0, 0, 0, 0
+-1594	Play_Animation,		17, "X00_Trnspt_traj.X00_Trnspt_traj", 0
+-2250	destroy_object,		17
+
+
+
+; ****************************** Transport
+
+-1594	Create_real_Object,	18, "gdi_transport_helicopter_NoAudio", 	17, "BN_trajectory"
+-1594	Attach_to_Bone,		18,17,"BN_Trajectory"
+-1594	Play_Animation,		18, "V_GDI_Trnspt.X00_Trnspt_anim", 1
+-2250	destroy_object,		18
+
+; ****************************** Air Turbulence
+
+-1700	Create_Object,		37, "XG_AG_RT_BnAir",			0, 0, 0, 0, 
+-2125	destroy_object,		37
+
+
+; ****************************** Explosion
+
+-1112	Create_Object,		19, "X00_AG_Explode",			0, 0, 0, 0
+-1112	Play_Animation,		19, "X00_Explode.X00_Explode", 0
+-1600	destroy_object,		19
+
+
+; ****************************** Rope
+
+-1773	Create_Object,		20, "X00_Rope",			0, 0, 0, 0
+-1773	Play_Animation,		20, "X00_Rope.X00_Rope", 0
+-2105	destroy_object,		20
+
+
+; ****************************** Nod_LTank trajectory
+
+-1480	Create_Object,		21, "X00_Ltank_traj",			0, 0, 0, 0
+-1480	Play_Animation,		21, "X00_Ltank_traj.X00_Ltank_traj", 0
+-1600	destroy_object,		21
+
+
+
+; ****************************** Nod_LTank
+
+-1480	Create_real_Object,	22, "Nod_light_tank_dec", 	21, "BN_trajectory"
+-1480	Attach_to_Bone,		22,21,"BN_Trajectory"
+-1480	Play_Animation,		22, "V_Nod_Ltank.X00_Ltank_Anim", 0
+-1545    Attach_Script,         22, "M00_Cinematic_Attack_Command_DLS", ".5"
+-1600	destroy_object,		22
+
+
+
+
+
+
+
+; ****************************** NOD Troop Trajectory
+
+-1185	Create_Object,		23, "X00_NOD_Troops",		0, 0, 0, 0
+-1185	Play_Animation,		23, "X00_NOD_Troops.X00_NOD_Troops", 0
+-1600	destroy_object,		23
+
+
+; ****************************** NOD Minigunner
+
+-0	Create_real_Object,	24, "Nod_minigunner_0", 	7, "BN_nod_MG01" 
+-1185	Attach_to_Bone,		24,23,"BN_nod_MG01"
+-1185  	Attach_Script,          24, "M00_Disable_Loiter_DAY"
+;-1185	Play_Animation,		24, "S_A_Human.H_A_C1C0",1
+-1200    Attach_Script,         24, "M00_Cinematic_Attack_Command_DLS", "3.0"
+-1340    Attach_Script,         24, "M00_Cinematic_Attack_Command_DLS", "1.0"
+-1430    Attach_Script,         24, "M00_Cinematic_Attack_Command_DLS", "2.0"
+-1530    Attach_Script,         24, "M00_Cinematic_Attack_Command_DLS", "2.0"
+-1600	destroy_object,		24
+
+; ****************************** NOD MG02
+
+-0	Create_real_Object,	25, "Nod_minigunner_0", 	7, "BN_nod_MG02" 
+-1185	Attach_to_Bone,		25,23,"BN_nod_MG02"
+-1185  	Attach_Script,          25, "M00_Disable_Loiter_DAY"
+;-1185	Play_Animation,		25, "S_A_Human.H_A_C1C0",1
+-1230    Attach_Script,         25, "M00_Cinematic_Attack_Command_DLS", "2.0"
+-1380    Attach_Script,         25, "M00_Cinematic_Attack_Command_DLS", "1.0"
+-1500    Attach_Script,         25, "M00_Cinematic_Attack_Command_DLS", "2.0"
+-1600	destroy_object,		25
+
+; ****************************** NOD MG03
+
+-0	Create_real_Object,	26, "Nod_minigunner_0", 	7, "BN_nod_MG03" 
+-1185	Attach_to_Bone,		26,23,"BN_nod_MG03"
+-1185  	Attach_Script,          26, "M00_Disable_Loiter_DAY"
+;-1185	Play_Animation,		26, "S_A_Human.H_A_C1C0",1
+-1210    Attach_Script,         26, "M00_Cinematic_Attack_Command_DLS", "11.0"
+-1600	destroy_object,		26
+
+; ****************************** NOD SNIPER
+
+-0	Create_real_Object,	27, "Nod_minigunner_2sf", 	7, "BN_nod_SNIPER" 
+-1185	Attach_to_Bone,		27,23,"BN_nod_SNIPER"
+-1185  	Attach_Script,          27, "M00_Disable_Loiter_DAY"
+;-1185	Play_Animation,		27, "S_A_Human.H_A_C1C0",1
+-1250    Attach_Script,         27, "M00_Cinematic_Attack_Command_DLS", "3"
+-1400    Attach_Script,         27, "M00_Cinematic_Attack_Command_DLS", "3"
+-1510    Attach_Script,         27, "M00_Cinematic_Attack_Command_DLS", "1"
+-1600	destroy_object,		27
+
+; ****************************** NOD ROCKET DUDE
+
+-0	Create_real_Object,	28, "Nod_rocketsoldier_0", 	7, "BN_nod_ROC_01" 
+-1185	Attach_to_Bone,		28,23,"BN_nod_ROC_01"
+-1185  	Attach_Script,          28, "M00_Disable_Loiter_DAY"
+;-1185	Play_Animation,		28, "S_A_Human.H_A_C1C0",1
+-1230    Attach_Script,         28, "M00_Cinematic_Attack_Command_DLS", "11.0"
+-1600	destroy_object,		28
+
+
+
+
+; ****************************** Scorpion
+
+-0	Create_Object,		29, "X00_Scorpion",		0,0,0,0
+-0	Play_Animation,		29, "X00_Scorpion.X00_Scorpion",0
+-0	Enable_Shadow,		29, 1
+-160	Enable_Shadow,		29, 0
+-160	destroy_object,		29
+
+
+; ****************************** Nod_Rocket Dude 2 SPECIAL
+
+-1080	Create_Object,		31, "X00_ROC2_traj",			0, 0, 0, 0
+-1080	Play_Animation,		31, "X00_ROC2_traj.X00_ROC2_traj", 0
+-1600	destroy_object,		31
+
+; ****************************** NOD ROCKET DUDE 2 SPECIAL
+
+-1080	Create_real_Object,	32, "Nod_rocketsoldier_0", 	7, "BN_nod_ROC_02" 
+-1080	Attach_to_Bone,		32,31,"BN_nod_ROC_02"
+-1080  	Attach_Script,          32, "M00_Disable_Loiter_DAY"
+-1080	Play_Animation,		32, "S_A_Human.H_A_X00_ROC2",0
+-1199   Attach_Script,          32, "M00_Cinematic_Attack_Command_DLS", "10.0"
+-1600	destroy_object,		32
+
+
+; ****************************** GDI ENGINEER 1 TRAJECTORY
+
+-1980	Create_Object,		33, "X00_ENG1_traj",			0, 0, 0, 0
+-1980	Play_Animation,		33, "X00_ENG1_traj.X00_ENG1_traj", 0
+;-2075	destroy_object,		33
+
+; ****************************** GDI ENGINEER 1
+
+-1980	Create_real_Object,	34, "GDI_ENGINEER_0", 	33, "BN_ENGINEER_1" 
+-1980   Attach_Script,          34, "MX0_Engineer1", ".02"
+-1980	Attach_to_Bone,		34,33,"BN_ENGINEER_1"
+-1980  	Attach_Script,          34, "M00_Disable_Loiter_DAY"
+-1980	Play_Animation,		34, "S_A_Human.H_A_X00_ENG1",0
+-2075	Attach_to_Bone,		34, -1,"BN_ENGINEER_1"
+;-2075	destroy_object,		34
+
+
+; ****************************** GDI ENGINEER 2 TRAJECTORY
+
+-2030	Create_Object,		35, "X00_ENG2_traj",			0, 0, 0, 0
+-2030	Play_Animation,		35, "X00_ENG2_traj.X00_ENG2_traj", 0
+;-2120	destroy_object,		35
+
+; ****************************** GDI ENGINEER 2
+
+-2030	Create_real_Object,	36, "GDI_Engineer_0_B", 	35, "BN_ENGINEER_2" 
+-2030   Attach_Script,          36, "MX0_Engineer2", ".02"
+-2030	Attach_to_Bone,		36,35,"BN_ENGINEER_2"
+-2030  	Attach_Script,          36, "M00_Disable_Loiter_DAY"
+-2030	Play_Animation,		36, "S_A_Human.H_A_X00_ENG2",0
+-2120	Attach_to_Bone,		36, -1,"BN_ENGINEER_2"
+-2125	Send_Custom,		1200001, 100001, 0
+;-2120	destroy_object,		36
+
+; ****************************** CONVERSATION
+
+;-????    Attach_Script,         ??, "M00_Generic_Conv_DME", "MX0INTRO0??"
+
+;GDI MGO  			#8
+;GDI MG01 			#9
+;GDI MG02			#10
+;GDI MG03 			#11
+;GDI MG04 			#12
+;GDI MG05 			#13
+;GDI MG06 			#14
+;GDI ENGINEER 1			#34
+;GDI ENGINEER 2			#36
+
+;NOD Minigunner			#24
+;NOD MG02			#25
+;NOD MG03			#26
+;NOD SNIPER			#27
+;NOD ROCKET DUDE		#28
+;NOD ROCKET DUDE 2 SPECIAL	#32
+
+;-????    Attach_Script,         9, "M00_Generic_Conv_DME", "MX0INTRO001"
+-187    Attach_Script,         10, "M00_Generic_Conv_DME", "MX0INTRO002"
+-236    Attach_Script,         12, "M00_Generic_Conv_DME", "MX0INTRO003"
+-288    Attach_Script,         8, "M00_Generic_Conv_DME", "MX0INTRO004"
+-312    Attach_Script,         14, "M00_Generic_Conv_DME", "MX0INTRO005"
+-389    Attach_Script,         9, "M00_Generic_Conv_DME", "MX0INTRO006"
+-448    Attach_Script,         10, "M00_Generic_Conv_DME", "MX0INTRO007"
+-873    Attach_Script,         8, "M00_Generic_Conv_DME", "MX0INTRO008"
+-940    Attach_Script,         8, "M00_Generic_Conv_DME", "MX0INTRO008b"
+-498    Attach_Script,         14, "M00_Generic_Conv_DME", "MX0INTRO009"
+-632    Attach_Script,         8, "M00_Generic_Conv_DME", "MX0INTRO010"
+;-1122    Attach_Script,         11, "M00_Generic_Conv_DME", "MX0INTRO011"
+-1122    Attach_Script,         11, "M00_Generic_Conv_DME", "Mx0_GDITROOPER4_Alt05"
+-1192    Attach_Script,         12, "M00_Generic_Conv_DME", "MX0INTRO012"
+-1210    Attach_Script,         12, "M00_Generic_Conv_DME", "Mx0_GDITROOPER4_HIT4"
+-1221    Attach_Script,         9, "M00_Generic_Conv_DME", "MX0INTRO013"
+-1226    Attach_Script,         9, "M00_Generic_Conv_DME", "Mx0_GDITROOPER2_DIE2"
+-1252    Attach_Script,         10, "M00_Generic_Conv_DME", "MX0INTRO014"
+-1259    Attach_Script,         10, "M00_Generic_Conv_DME", "MX0_GDITROOPER1_DIEEXPLO2"
+-1300    Attach_Script,         9, "M00_Generic_Conv_DME", "MX0INTRO015"
+-1330    Attach_Script,         9, "M00_Generic_Conv_DME", "MX0_GDITROOPER1_DIEBURN1"
+-1348    Attach_Script,         8, "M00_Generic_Conv_DME", "MX0INTRO016"
+-1384    Attach_Script,         10, "M00_Generic_Conv_DME", "MX0_GDITROOPER1_HIT3"
+-1409    Attach_Script,         11, "M00_Generic_Conv_DME", "MX0_GDITROOPER2_HIT4"
+-1420    Attach_Script,         12, "M00_Generic_Conv_DME", "MX0_GDITROOPER3_HIT8"
+-1441    Attach_Script,         13, "M00_Generic_Conv_DME", "MX0_GDITROOPER4_HIT6"
+-1461    Attach_Script,         8, "M00_Generic_Conv_DME", "MX0INTRO017"
+;-????    Attach_Script,         8, "M00_Generic_Conv_DME", "MX0INTRO018"
+-1531    Attach_Script,         10, "M00_Generic_Conv_DME", "MX0INTRO019"

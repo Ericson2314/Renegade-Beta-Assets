@@ -1,0 +1,185 @@
+;_________________________________________
+;
+; Available Cinematic Script Commands
+;
+; time/frame	Create_Object,	id (slot), preset_name, x, y, z, facing, animation
+; id can be -1 to mean do not store this object, and do not destroy
+; 0 Create_Object, 0, .44 Magnum, 0, 0, 0, 180, "Human.jump"
+;
+; time/frame	Destroy_Object, id (slot)
+; 0 Destroy_Object, 0
+;
+; time/frame	Play_Animation, id (slot), animation_name, looping, sub_obj_name
+; 0 Play_Animation, 0, "Human.Jump", false
+;
+; time/frame	Control_Camera,	id ( slot )
+; use id -1 for disabling control;
+; note this will also disable star control and disbale the hud
+; 0 Control_Camera,	0
+;
+;_________________________________________
+
+;*******************  CHEAT SHEET ******************************
+
+;Start frame	create_object	slot number	model	x,y,z,facing	animation name( model*hierarchy*.anim )
+;Start frame	Play_Animation 	slot number	anim name ( model*hierarchy*.anim )	looping		Sub Object
+;Start frame	Play_Audio	wave filename	slot number	bone name
+;								* no slot # / bone name = 2D Audio
+;0= NO LOOP ( kills object when finshed )	1= LOOP
+
+;************************* Mission 00 Finale  ************************
+
+; ****************************** camera
+
+-0	Create_Object,		0, "X0Z_CAMERA",		0, 0, 0, 0, 
+-0	Play_Animation,		0, "X0Z_CAMERA.X0Z_CAMERA", 0
+-0	Control_Camera,		0
+;-440	Send_Custom,		1500017, 445009, 1
+-440	destroy_object,		0
+
+; ******************************************************
+
+;-0	Play_Audio,		"***********"
+
+-0	Enable_Letterbox,	1, 1
+-0	Set_Screen_Fade_Color,		1,1,1,0
+-0	Set_Screen_Fade_Opacity,	1,0
+-0	Set_Screen_Fade_Opacity,	0,3
+-410	Set_Screen_Fade_Color,		0,0,0,0
+-410	Set_Screen_Fade_Opacity,	1,1
+-440	Enable_Letterbox,		0,0
+-440	Set_Screen_Fade_Opacity,	0,0
+-440	Send_Custom,		1500017, 445009, 1
+
+; ****************************** Trajectory Mamoth
+
+-0	Create_Object,		1, "X0Z_Mamth_traj",			0, 0, 0, 0
+-0	Play_Animation,		1, "X0Z_Mamth_traj.X0Z_Mamth_traj", 0
+-440	destroy_object,		1
+
+; ****************************** Mammoth
+
+-0	Create_Real_Object,	2, "CnC_GDI_Mammoth_Tank_No_Turret", 1, "BN_Trajectory" 
+-0	Attach_to_Bone,		2,1,"BN_Trajectory"
+-0	Play_Animation,		2, "v_gdi_mammth.x0Z_mamth_anim", 0
+;-0	Set_Primary,		2
+-440	destroy_object,		2
+
+; ****************************** Orca01 Trajectory
+
+-0	Create_Object,		3, "X0Z_Orca01_Traj",			0, 0, 0, 0,
+-0	Play_Animation,		3, "X0Z_Orca01_Traj.X0Z_Orca01_Traj",0
+-410	destroy_object,		3
+
+
+
+
+; ****************************** Orca01
+
+-0	Create_real_Object,	4, "GDI_Orca_FLyover",3		,"BN_trajectory"			
+-0	Play_Animation,		4, "V_GDI_Orca.V_GDI_Orca",0
+-0	Attach_to_Bone,		4,3,"BN_trajectory"
+-410	Attach_Script,          4, "M00_Cinematic_Kill_Object_DAY"
+
+
+
+; ****************************** Orca02 Trajectory
+
+-0	Create_Object,		5, "X0Z_Orca02_Traj",			0, 0, 0, 0,
+-0	Play_Animation,		5, "X0Z_Orca02_Traj.X0Z_Orca02_Traj",0
+-410	destroy_object,		5
+
+
+
+
+; ****************************** Orca02
+
+-0	Create_real_Object,	6, "GDI_Orca_FLyover",5		,"BN_trajectory"			
+-0	Play_Animation,		6, "V_GDI_Orca.V_GDI_Orca",0
+-0	Attach_to_Bone,		6,5,"BN_trajectory"
+-410	Attach_Script,          6, "M00_Cinematic_Kill_Object_DAY"
+
+
+
+
+; ****************************** GDI Troop Trajectory
+
+-0	Create_Object,		7, "X0Z_Troops",			0, 0, 0, 0
+-0	Play_Animation,		7, "X0Z_Troops.X0Z_Troops", 0
+-410	destroy_object,		7
+
+
+
+; ****************************** GDI MGO
+
+-0	Create_real_Object,	8, "MX0_GDI_Minigunner_1OFF", 	7, "BN_Troop000" 
+-0	Attach_to_Bone,		8,7,"BN_Troop000"
+-0  	Attach_Script,          8, "M00_Disable_Loiter_DAY"
+-0	Play_Animation,		8, "S_A_Human.H_A_D2A1",1
+-410	destroy_object,		8
+
+; ****************************** GDI MG01
+
+-0	Create_real_Object,	9, "mx0_gdi_minigunner_0_b", 		7, "BN_Troop001"
+-0	Attach_to_Bone,		9,7,"BN_Troop001"
+-0  	Attach_Script,          9, "M00_Disable_Loiter_DAY"
+-0	Play_Animation,		9, "S_A_Human.H_A_D2A1",1
+-410	destroy_object,		9
+
+
+; ****************************** GDI MG02
+
+-0	Create_real_Object,	10, "gdi_rocketsoldier_1off", 		7, "BN_Troop002"
+-0	Attach_to_Bone,		10,7,"BN_Troop002"
+-0  	Attach_Script,          10, "M00_Disable_Loiter_DAY"
+-0	Play_Animation,		10, "S_A_Human.H_A_D2A1", 1
+-410	destroy_object,		10
+
+
+; ****************************** GDI MG03
+
+-0	Create_real_Object,	11, "gdi_minigunner_0", 	7, "BN_Troop003"
+-0	Attach_to_Bone,		11,7,"BN_Troop003"
+-0  	Attach_Script,          11, "M00_Disable_Loiter_DAY"
+-0	Play_Animation,		11, "S_A_Human.H_A_D2A1", 1
+-410	destroy_object,		11
+
+
+; ****************************** GDI MG04
+
+-0	Create_real_Object,	12, "gdi_minigunner_0", 		7, "BN_Troop004"
+-0	Attach_to_Bone,		12,7,"BN_Troop004"
+-0  	Attach_Script,          12, "M00_Disable_Loiter_DAY"
+-0	Play_Animation,		12, "S_A_Human.H_A_D2A1", 1
+-410	destroy_object,		12
+
+
+
+; ****************************** Effects
+
+-0	Create_Object,		13, "X0Z_Effects",			0, 0, 0, 0
+-440	destroy_object,		13
+
+
+; ****************************** Havoc trajectory
+
+-0	Create_Object,		15, "X0Z_Havoc",			0, 0, 0, 0
+-0	Play_Animation,		15, "X0Z_Havoc.X0Z_Havoc", 0
+-440	destroy_object,		15
+
+
+
+; ****************************** Havoc
+
+;-0	Send_Custom,		1200001, 117, 0
+-0	Create_real_Object,	16, "commando_desert", 		15, "BN_Havoc"
+-0	Attach_to_Bone,		16,15,"BN_Havoc"
+-0  	Attach_Script,          16, "M00_Disable_Loiter_DAY"
+-0	Play_Animation,		16, "S_A_Human.H_A_Havocstand", 0
+;-1998	Send_Custom,		1200001, 99, 0
+-440	destroy_object,		16
+
+; ****************************** Voice Over Dialog
+
+-0	Attach_Script,         12, "M00_Generic_Conv_DME", "MX0_A04_CON020"
+

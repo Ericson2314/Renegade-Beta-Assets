@@ -1,0 +1,5 @@
+This is the old c4 that can be found in the commando mod.
+It is fully setup and has an animated clock.
+
+Use it for your own purposes.
+If you adjust it and release it credit the commando mod.

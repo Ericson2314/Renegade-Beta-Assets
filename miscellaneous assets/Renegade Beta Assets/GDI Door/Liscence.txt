@@ -1,0 +1,6 @@
+This is the GDI Refinery door I have recreated.
+Make this into a leveltile in your leveleditor and rig it as a door.
+
+Do want you want with this door.
+
+Reaver11

@@ -1,0 +1,4 @@
+This is the GDI Humvee patched up by rrutk.
+It is in full working condition.
+
+You may use and edit the model as long as you credit rrutk.

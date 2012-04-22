@@ -1,0 +1,6 @@
+This is the GDI Airstrip created by Westwood.
+It can be found in the Buildings.zip
+
+Do what you want with it :)
+
+The gdiair_ag_exp and gdiair_ext are rrutk's fixed version if you use them please credit him.
